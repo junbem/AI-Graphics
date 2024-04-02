@@ -5,12 +5,13 @@
 ![스크린샷 2024-04-02 214333](https://github.com/junbem/AI-Graphics/assets/50951220/eb931665-2301-4ab8-91cc-ab9710e3fa37)
 
 #8번째 강의 실습
+![스크린샷 2024-04-02 155742](https://github.com/junbem/AI-Graphics/assets/50951220/dad9d292-5d30-43db-a79f-82ffda88d280)
+
 ![스크린샷 2024-04-02 214242](https://github.com/junbem/AI-Graphics/assets/50951220/bc76391b-3918-4633-8b9b-77cbc0231764)
 
 #9번째 강의 실습
+![9번째 영상 실습](https://github.com/junbem/AI-Graphics/assets/50951220/6942df76-5c96-4fdc-9f5d-27d0ad63b2e2)
 
-
-![스크린샷 2024-04-02 155742](https://github.com/junbem/AI-Graphics/assets/50951220/dad9d292-5d30-43db-a79f-82ffda88d280)
 
 
 #10번째 강의 실습
