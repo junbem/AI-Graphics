@@ -1,5 +1,19 @@
+#7번째 강의 실습
+![스크린샷 2024-04-02 214047](https://github.com/junbem/AI-Graphics/assets/50951220/06fec0b8-b0bb-4829-9e44-fd69de3f549f)
+
+## 모래시계 모양
+![스크린샷 2024-04-02 214333](https://github.com/junbem/AI-Graphics/assets/50951220/eb931665-2301-4ab8-91cc-ab9710e3fa37)
+
+#8번째 강의 실습
+![스크린샷 2024-04-02 214242](https://github.com/junbem/AI-Graphics/assets/50951220/bc76391b-3918-4633-8b9b-77cbc0231764)
+
+#9번째 강의 실습
+
+
 ![스크린샷 2024-04-02 155742](https://github.com/junbem/AI-Graphics/assets/50951220/dad9d292-5d30-43db-a79f-82ffda88d280)
 
+
+#10번째 강의 실습
 ##normalMap: mapNormal, 유리 디테일을 살린거
 ![스크린샷 2024-04-02 202556](https://github.com/junbem/AI-Graphics/assets/50951220/9bfff423-07ed-42dd-966c-55a7eaf179ed)
 
