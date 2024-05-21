@@ -24,8 +24,8 @@ function draw() {
 fill(255, 0, 0); // 원의 색상 설정 (빨강)
 ellipse(mouseX, mouseY, 50, 50); // 마우스 위치에 원 그리기
 }
-![스크린샷 2024-05-21 154048](https://github.com/junbem/AI-Graphics/assets/50951220/9a9b6bed-7399-4a29-b9ce-994cf8464f36)
 
+![스크린샷 2024-05-21 154048](https://github.com/junbem/AI-Graphics/assets/50951220/9a9b6bed-7399-4a29-b9ce-994cf8464f36)
 
 ### 2.
 ## 1) ml5.js의 기능과 장점 설명
