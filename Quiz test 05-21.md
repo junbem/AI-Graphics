@@ -1,4 +1,4 @@
-### 1.
+# 1.
 ## 1) p5.js의 특징
 간편한 사용성: p5.js는 자바스크립트 기반의 라이브러리로, 그래픽 및 인터랙티브 아트를 쉽게 생성할 수 있습니다.
 웹 기반: 웹 브라우저에서 실행되며, 다양한 디바이스에서 작동하는데 용이합니다.
@@ -27,7 +27,7 @@ ellipse(mouseX, mouseY, 50, 50); // 마우스 위치에 원 그리기
 
 ![스크린샷 2024-05-21 154048](https://github.com/junbem/AI-Graphics/assets/50951220/9a9b6bed-7399-4a29-b9ce-994cf8464f36)
 
-### 2.
+# 2.
 ## 1) ml5.js의 기능과 장점 설명
 간편한 사용법: ml5.js는 머신러닝 모델을 쉽게 웹 애플리케이션에 통합할 수 있도록 지원합니다.
 사전 훈련된 모델 제공: 이미 구축된 모델을 제공하여 개발자가 쉽게 활용할 수 있습니다.
@@ -48,7 +48,7 @@ ellipse(mouseX, mouseY, 50, 50); // 마우스 위치에 원 그리기
 모델 학습: 특징 벡터를 기반으로 머신러닝 알고리즘이 학습하여 이미지의 클래스를 예측할 수 있는 모델을 생성합니다.
 예측: 새로운 이미지에 대해 학습된 모델을 사용하여 해당 이미지의 클래스를 예측합니다.
 
-### 3.
+# 3.
 ## 1) three.js의 주요 구성 요소 설명
 Scene(장면): 모든 3D 객체가 배치되는 공간을 정의합니다.
 Renderer(렌더러): 3D 장면을 화면에 그리는 역할을 합니다.
@@ -64,7 +64,8 @@ Material(재질): 객체의 표면 특성을 정의하고 색상, 질감 등을 
 객체 추가: 장면에 생성한 객체를 추가하여 전체 3D 장면을 구성합니다.
 
 ## 3) 예제 코드 작성 및 설명
-# 01-basic.css 
+### 01-basic.css 
+```
 * {
     outline: none;
     margin: 0;
@@ -81,8 +82,9 @@ body {
     width: 100%;
     height: 100%;
 }
-
-# 01-basic.html
+```
+### 01-basic.html
+```
 <!DOCTYPE html>
 <html>
     <head>
@@ -102,8 +104,9 @@ body {
         <div id="webgl-container"></div>
     </body>
 </html>
-
-# 01-basic.js
+```
+### 01-basic.js
+```
 import * as THREE from '../build/three.module.js';
 
 class App {
@@ -196,5 +199,101 @@ class App {
 window.onload = function() {
     new App()
 }
+```
+![녹음 2024-05-21 163053](https://github.com/junbem/AI-Graphics/assets/50951220/3c302f29-309a-4a7b-9860-a81a833f47a3)
 
+# 4. 
+## React의 특징 및 이점 설명
+React와의 통합: R3F는 React와 자연스럽게 통합되어 개발자가 선언적이고 유연한 방식으로 3D 그래픽을 구현할 수 있습니다.
+컴포넌트 기반: Three.js를 React 컴포넌트처럼 사용할 수 있어 코드의 가독성과 재사용성을 높여줍니다.
+상태 관리 용이성: React의 상태 관리 기능을 활용하여 3D 장면의 동적인 요소를 쉽게 관리할 수 있습니다.
+가독성과 유지보수성: JSX 문법을 사용하여 Three.js 코드를 더욱 읽기 쉽고 유지보수하기 쉽게 만듭니다.
+React 생태계 활용: React의 다양한 라이브러리와 생태계를 활용할 수 있어 개발 생산성을 향상시킵니다.
+
+## R3F를 사용한 3D 장면 생성 과정 서술
+초기 설정: React 프로젝트를 생성하고 필요한 종속성을 설치합니다.
+컴포넌트 생성: Three.js 요소를 포함하는 React 컴포넌트를 작성합니다.
+장면 설정: R3F의 Canvas 컴포넌트를 사용하여 Three.js 장면을 렌더링할 캔버스를 생성합니다.
+요소 추가: 필요한 기하학 요소 및 라이트를 추가하여 3D 장면을 구성합니다.
+애니메이션 및 상호작용 구현: React 상태나 이벤트 핸들러를 활용하여 3D 요소의 애니메이션 또는 상호작용을 구현합니다.
+
+## 예제 코드 작성 및 설명
+
+#### App.jsx
+
+```
+import './App.css'
+import { Canvas } from '@react-three/fiber'
+import MyElement3D from './MyElement3D'
+
+function App() {
+  return (
+    <>
+      	<Canvas>
+            // 컴포넌트 호출
+          	<MyElement3D />
+      	</Canvas>
+    </>
+  )
+}
+
+export default App
+```
+#### MyElement3D.jsx (컴포넌트)
+```
+function MyElement3D {
+ 	return (
+    	<>
+        	// 조명 설정
+        	<directionalLight position={[1, 1, 1]} />
+        
+        	// mesh : 3차원 모델
+        	<mesh>
+              // boxGeometry : 정육면체
+              <boxGeometry />
+              
+              // mesh의 색상을 정의하기 위해 material 설정
+              <meshStandardMaterial color="#e67e22" />
+        	</mesh>
+        </>
+    )
+}
+
+export default MyElement3D
+
+```
+
+#### MyElement3D.jsx
+```
+import { useRef } from "react"
+import { useFrame } from "@react-three/fiber"
+
+function MyElement3D {
+  	// useRef 훅
+    const refMesh = useRef()
+  
+    // delta : 이전 프레임과 현재 프레임 사이의 경과 시간 (단위 : 밀리초)
+    useFrame((state, delta) => {
+    	// 콜백함수 : 매 프레임이 렌더링 되기 전 호출되는 함수
+      // 매 프레임마다 delta씩 회전 => 무한 회전
+      refMesh.current.rotation.y += delta
+    })
+    
+ 	return (
+    	<>
+        	<directionalLight position={[1, 1, 1]} />
+        
+        	// y축 90도 방향 회전
+        	<mesh ref={refMesh} rotation-y={[45*Math.PI/180]}>
+              <boxGeometry />
+              
+              <meshStandardMaterial color="#e67e22" />
+        	</mesh>
+        </>
+    )
+}
+
+export default MyElement3D
+```
+![chrome-capture-2024-4-29](https://github.com/wonder21c/computer-graphic/assets/50861700/2859e346-a178-4f7e-ae27-3389d41494ef)
 
