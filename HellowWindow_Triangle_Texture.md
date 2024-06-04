@@ -339,36 +339,10 @@ private:
 요약하면, 두 코드 모두 DirectX 12를 사용하여 Windows 창에 렌더링하는 방법을 보여주지만, 각각 다른 렌더링 방식을 보여주며 구현에 중요한 차이가 있습니다.
 
 ## HelloTexture 추가부분 및 설명
-```
-// Pipeline objects.
-ComPtr<ID3D12Resource> m_texture; // Texture resource
-ComPtr<ID3D12DescriptorHeap> m_srvHeap; // Shader Resource View (SRV) heap
 
-// App resources.
-static const UINT TextureWidth = 256;
-static const UINT TextureHeight = 256;
-static const UINT TexturePixelSize = 4; // The number of bytes used to represent a pixel in the texture
-
-// Load the rendering pipeline dependencies.
-void LoadPipeline();
-// Load the sample assets.
-void LoadAssets();
-// Generate a simple black and white checkerboard texture.
-std::vector<UINT8> GenerateTextureData();
-// Update frame-based values.
-virtual void OnUpdate();
-// Render the scene.
-virtual void OnRender();
-// Clean up the resources.
-virtual void OnDestroy();
-// Populate the command list.
-void PopulateCommandList();
-// Wait for the previous frame to complete.
-void WaitForPreviousFrame();
-```
 아래의 코드는 `D3D12HelloTexture` 클래스에 추가된 멤버 변수 및 메서드들을 나타냅니다. 
 
-```cpp
+```
 // Pipeline objects.
 ComPtr<ID3D12Resource> m_texture; // Texture resource
 ComPtr<ID3D12DescriptorHeap> m_srvHeap; // Shader Resource View (SRV) heap
