@@ -1,4 +1,4 @@
-## HelloWindow 소스코드 및 설명
+## HellowWindow 소스코드 및 설명
 ```
 //*********************************************************
 //
@@ -218,7 +218,34 @@ void D3D12HelloWindow::PopulateCommandList()
 void D3D12HelloWindow::WaitForPreviousFrame()
 {
     // WAITING FOR THE FRAME TO COMPLETE BEFORE CONTINUING IS NOT BEST PRACTICE.
-    // This is cod명
+    // This is code implemented as such for simplicity. The D3D12HelloFrameBuffering
+    // sample illustrates how to use fences for efficient resource usage and to
+    // maximize GPU utilization.
+
+    // Signal and increment the fence value.
+    const UINT64 fence = m_fenceValue;
+    ThrowIfFailed(m_commandQueue->Signal(m_fence.Get(), fence));
+    m_fenceValue++;
+
+    // Wait until the previous frame is finished.
+    if (m_fence->GetCompletedValue() < fence)
+    {
+        ThrowIfFailed(m_fence->SetEventOnCompletion(fence, m_fenceEvent));
+        WaitForSingleObject(m_fenceEvent, INFINITE);
+    }
+
+    m_frameIndex = m_swapChain->GetCurrentBackBufferIndex();
+}
+```
+
+1. 디버그 설정: _DEBUG 매크로가 정의되어 있으면, 코드는 디버그 레이어를 활성화하고 추가적인 디버그 레이어를 활성화합니다. 이것은 디버깅을 용이하게 하고 오류를 식별하는 데 도움이 됩니다.
+2. 파이프라인 로드: LoadPipeline 함수는 렌더링에 필요한 DirectX 12 파이프라인을 로드합니다. 이것은 디바이스 생성, 커맨드 큐 생성, 스왑 체인 생성 등의 작업을 포함합니다.
+3. 자산 로드: LoadAssets 함수는 샘플 자산을 로드합니다. 여기서는 주로 초기화 작업이 이루어집니다.
+4. 프레임 업데이트: OnUpdate 함수는 프레임마다 값의 업데이트를 처리합니다. 이 예제에서는 아무 작업도 수행하지 않습니다.
+5. 렌더링: OnRender 함수는 실제 렌더링을 수행합니다. PopulateCommandList 함수에서 렌더링 명령이 커맨드 리스트에 기록되고, 이후 커맨드 리스트가 실행되어 실제 렌더링이 발생합니다.
+6. 프레임 완료 대기: WaitForPreviousFrame 함수는 이전 프레임의 완료를 기다립니다. 이는 특별히 최적화되지 않은 방법으로 구현되었으며, 실제 애플리케이션에서는 효율적인 자원 사용을 위해 피치해야 할 수 있습니다.
+
+## HelloTriangle 추가부분 및 설명
 ```
 // 첫 번째 코드에서는 D3D12HelloWindow 클래스를 사용하고, 렌더링 파이프라인의 상태 전이를 처리합니다.
 class D3D12HelloWindow : public DXSample
@@ -304,12 +331,14 @@ private:
 };
 ```
 
-HelloWorld 코드에서는 D3D12HelloWindow 클래스가 사용되고 렌더링 파이프라인의 상태 전이를 처리하는 함수가 구현되어 있습니다. 반면에 HelloTriangle 코드에서는 D3D12HelloTriangle 클래스가 사용되며, 버텍스 데이터를 정의하고 삼각형을 렌더링하는 방법을 보여줍니다.
-1. 클래스 이름과 종속성: 두 코드 모두 DirectX 12를 사용하여 Windows 창에 렌더링하는 예제를 보여줍니다. 그러나 두 번째 코드는 D3D12HelloTriangle 클래스를 사용합니다. 또한 두 번째 코드에서는 DXSample 클래스를 상속합니다.
-2. 렌더링 방식: 첫 번째 코드는 각 프레임마다 백 버퍼를 클리어하고 다시 렌더링하는 방식을 사용합니다. 반면, 두 번째 코드는 정점 데이터를 사용하여 삼각형을 렌더링하는 간단한 씬을 보여줍니다. 따라서 각 코드는 다른 렌더링 방식을 보여줍니다.
-3. 버텍스 데이터: 두 번째 코드는 버텍스 데이터를 정의하고 이를 사용하여 삼각형을 렌더링하는 데 필요한 버텍스 버퍼를 생성합니다. 
+1. **클래스 이름과 종속성**: 두 코드 모두 DirectX 12를 사용하여 Windows 창에 렌더링하는 예제를 보여줍니다. 그러나 첫 번째 코드는 `D3D12HelloWindow` 클래스를 사용하고, 두 번째 코드는 `D3D12HelloTriangle` 클래스를 사용합니다. 또한 두 번째 코드에서는 `DXSample` 클래스를 상속하는 반면, 첫 번째 코드는 해당 클래스가 누락되어 있습니다.
+2. **렌더링 방식**: 첫 번째 코드는 각 프레임마다 백 버퍼를 클리어하고 다시 렌더링하는 방식을 사용합니다. 반면, 두 번째 코드는 정점 데이터를 사용하여 삼각형을 렌더링하는 간단한 씬을 보여줍니다. 따라서 각 코드는 다른 렌더링 방식을 보여줍니다.
+3. **버텍스 데이터**: 두 번째 코드는 버텍스 데이터를 정의하고 이를 사용하여 삼각형을 렌더링하는 데 필요한 버텍스 버퍼를 생성합니다. 반면, 첫 번째 코드는 이러한 작업을 수행하지 않습니다.
+4. **파이프라인 상태**: 첫 번째 코드는 렌더링 파이프라인의 상태 전이를 처리하기 위해 `PopulateCommandList` 함수에서 백 버퍼의 상태를 전환합니다. 반면, 두 번째 코드는 이러한 작업을 수행하지 않습니다.
 
-## HelloTexture 추가 부분 및 설명
+요약하면, 두 코드 모두 DirectX 12를 사용하여 Windows 창에 렌더링하는 방법을 보여주지만, 각각 다른 렌더링 방식을 보여주며 구현에 중요한 차이가 있습니다.
+
+## HelloTexture 추가부분 및 설명
 ```
 // Pipeline objects.
 ComPtr<ID3D12Resource> m_texture; // Texture resource
@@ -337,10 +366,44 @@ void PopulateCommandList();
 // Wait for the previous frame to complete.
 void WaitForPreviousFrame();
 ```
+아래의 코드는 `D3D12HelloTexture` 클래스에 추가된 멤버 변수 및 메서드들을 나타냅니다. 
 
-1. 텍스처를 나타내는 ID3D12Resource 객체 및 해당 객체에 대한 셰이더 리소스 뷰(SRV) 힙인 ID3D12DescriptorHeap 객체를 추가로 선언합니다.
-2. 텍스처 생성 및 초기화를 위한 LoadAssets 및 GenerateTextureData 메서드가 추가됩니다.
-3. 매 프레임마다 호출되는 OnUpdate 및 OnRender 메서드가 추가됩니다.
-4. 자원 정리를 위한 OnDestroy 메서드가 추가됩니다.
-5. 명령 목록을 채우는 PopulateCommandList 메서드가 추가됩니다.
-6. 이전 프레임이 완료될 때까지 기다리는 WaitForPreviousFrame 메서드가 추가됩니다.
+```cpp
+// Pipeline objects.
+ComPtr<ID3D12Resource> m_texture; // Texture resource
+ComPtr<ID3D12DescriptorHeap> m_srvHeap; // Shader Resource View (SRV) heap
+
+// App resources.
+static const UINT TextureWidth = 256;
+static const UINT TextureHeight = 256;
+static const UINT TexturePixelSize = 4; // The number of bytes used to represent a pixel in the texture
+
+// Load the rendering pipeline dependencies.
+void LoadPipeline();
+// Load the sample assets.
+void LoadAssets();
+// Generate a simple black and white checkerboard texture.
+std::vector<UINT8> GenerateTextureData();
+// Update frame-based values.
+virtual void OnUpdate();
+// Render the scene.
+virtual void OnRender();
+// Clean up the resources.
+virtual void OnDestroy();
+// Populate the command list.
+void PopulateCommandList();
+// Wait for the previous frame to complete.
+void WaitForPreviousFrame();
+```
+
+`D3D12HelloTexture` 클래스에는 다음과 같은 추가 기능이 포함되어 있습니다:
+1. 텍스처를 나타내는 `ID3D12Resource` 객체 및 해당 객체에 대한 셰이더 리소스 뷰(SRV) 힙인 `ID3D12DescriptorHeap` 객체를 추가로 선언합니다.
+2. 텍스처 생성 및 초기화를 위한 `LoadAssets` 및 `GenerateTextureData` 메서드가 추가됩니다.
+3. 매 프레임마다 호출되는 `OnUpdate` 및 `OnRender` 메서드가 추가됩니다.
+4. 자원 정리를 위한 `OnDestroy` 메서드가 추가됩니다.
+5. 명령 목록을 채우는 `PopulateCommandList` 메서드가 추가됩니다.
+6. 이전 프레임이 완료될 때까지 기다리는 `WaitForPreviousFrame` 메서드가 추가됩니다.
+
+
+
+
