@@ -237,7 +237,7 @@ void D3D12HelloWindow::WaitForPreviousFrame()
     m_frameIndex = m_swapChain->GetCurrentBackBufferIndex();
 }
 ```
-
+![스크린샷 2024-06-04 160842](https://github.com/junbem/AI-Graphics/assets/50951220/d4d40b35-2649-47d9-81c5-b0ee53523adf)
 1. 디버그 설정: _DEBUG 매크로가 정의되어 있으면, 코드는 디버그 레이어를 활성화하고 추가적인 디버그 레이어를 활성화합니다. 이것은 디버깅을 용이하게 하고 오류를 식별하는 데 도움이 됩니다.
 2. 파이프라인 로드: LoadPipeline 함수는 렌더링에 필요한 DirectX 12 파이프라인을 로드합니다. 이것은 디바이스 생성, 커맨드 큐 생성, 스왑 체인 생성 등의 작업을 포함합니다.
 3. 자산 로드: LoadAssets 함수는 샘플 자산을 로드합니다. 여기서는 주로 초기화 작업이 이루어집니다.
