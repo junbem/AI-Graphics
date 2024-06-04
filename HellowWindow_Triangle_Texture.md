@@ -395,6 +395,7 @@ void PopulateCommandList();
 // Wait for the previous frame to complete.
 void WaitForPreviousFrame();
 ```
+![image](https://github.com/junbem/AI-Graphics/assets/50951220/01a8cfcd-0cd9-4cd4-a24f-3b9b3aac010a)
 
 `D3D12HelloTexture` 클래스에는 다음과 같은 추가 기능이 포함되어 있습니다:
 1. 텍스처를 나타내는 `ID3D12Resource` 객체 및 해당 객체에 대한 셰이더 리소스 뷰(SRV) 힙인 `ID3D12DescriptorHeap` 객체를 추가로 선언합니다.
